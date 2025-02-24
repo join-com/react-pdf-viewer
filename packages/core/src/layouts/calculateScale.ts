@@ -12,6 +12,10 @@ import { ViewMode } from '../structs/ViewMode';
 const SCROLL_BAR_WIDTH = 17;
 const PAGE_PADDING = 8;
 
+const getScrollbarWidth = (element: HTMLElement) => {
+    return element.offsetWidth - element.clientWidth;
+};
+
 // Calculate the scale when user zooms the document to given level
 export const calculateScale = (
     container: HTMLElement,
@@ -43,6 +47,6 @@ export const calculateScale = (
             );
 
         case SpecialZoomLevel.PageWidth:
-            return (container.clientWidth - SCROLL_BAR_WIDTH) / w;
+            return (container.clientWidth - (getScrollbarWidth(container) ? 0 : SCROLL_BAR_WIDTH)) / w;
     }
 };

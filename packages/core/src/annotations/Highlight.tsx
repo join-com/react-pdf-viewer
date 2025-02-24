@@ -25,33 +25,6 @@ export const Highlight: React.FC<{
     const contents = getContents(annotation);
     const isRenderable = !!(annotation.hasPopup || title || contents);
 
-    // Check if the highlight area is constructed by multiple quadrilaterals
-    const hasQuadPoints = annotation.quadPoints && annotation.quadPoints.length > 0;
-
-    if (hasQuadPoints) {
-        const annotations = annotation.quadPoints.map(
-            (quadPoint) =>
-                Object.assign({}, annotation, {
-                    rect: [quadPoint[2].x, quadPoint[2].y, quadPoint[1].x, quadPoint[1].y],
-                    // Reset the `quadPoints` property to avoid the infinitive loop
-                    quadPoints: [],
-                }) as PdfJs.Annotation
-        );
-        return (
-            <>
-                {annotations.map((ann, index) => (
-                    <Highlight
-                        key={index}
-                        annotation={ann}
-                        childAnnotation={childAnnotation}
-                        page={page}
-                        viewport={viewport}
-                    />
-                ))}
-            </>
-        );
-    }
-
     return (
         <Annotation
             annotation={annotation}

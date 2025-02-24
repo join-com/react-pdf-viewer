@@ -10,6 +10,8 @@ import type { Store } from '@react-pdf-viewer/core';
 import { ScrollMode, ViewMode } from '@react-pdf-viewer/core';
 import type { StoreProps } from './types/StoreProps';
 
+export type SwitchScrollModeProps = StoreProps;
+
 export const switchScrollMode = (store: Store<StoreProps>, scrollMode: ScrollMode) => {
     store.get('switchScrollMode')(scrollMode);
     // Get the current viewmode

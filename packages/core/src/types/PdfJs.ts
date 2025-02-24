@@ -279,4 +279,5 @@ export declare namespace PdfJs {
 
 declare module 'pdfjs-dist' {
     function renderTextLayer(params: PdfJs.RenderTextLayerParams): PdfJs.PageRenderTask;
+    let SVGGraphics: PdfJs.SVGGraphicsConstructor;
 }

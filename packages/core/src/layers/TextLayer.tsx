@@ -63,14 +63,15 @@ export const TextLayer: React.FC<{
         });
         page.getTextContent().then((textContent) => {
             empty();
-            renderTask.current = PdfJsApi.renderTextLayer({
+            const textLayer = new PdfJsApi.TextLayer({
                 container: containerEle,
-                // From pdf-js 3.2.146, the `textContent` parameter is deprecated
-                // and will be soon replaced with the `textContentSource` parameter
-                textContent: textContent as any,
                 textContentSource: textContent as any,
                 viewport: viewport as any,
             });
+            renderTask.current = {
+                promise: textLayer.render(),
+                cancel: () => textLayer.cancel(),
+            };
             renderTask.current.promise.then(
                 () => {
                     containerEle.setAttribute('data-testid', `core__text-layer-${pageIndex}`);

@@ -34,6 +34,9 @@ export const Annotation: React.FC<{
 }> = ({ annotation, children, ignoreBorder, hasPopup, isRenderable, page, viewport }) => {
     const { rect } = annotation;
     const { closeOnHover, opened, openOnHover, toggleOnClick } = useTogglePopup();
+    if (!rect) {
+        return null;
+    }
 
     const normalizeRect = (r: number[]): number[] => [
         Math.min(r[0], r[2]),

@@ -1,0 +1,10 @@
+name: Lint PR Title
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  execute:
+    uses: join-com/shared-workflows/.github/workflows/lint-pr-title.yml@master
+    secrets: inherit

@@ -1,0 +1,14 @@
+name: Autoupdate
+
+on:
+  pull_request:
+    types:
+      - opened
+      - labeled
+      - unlabeled
+
+jobs:
+  execute:
+    uses: join-com/shared-workflows/.github/workflows/autoupdate.yml@master
+    secrets: inherit
+

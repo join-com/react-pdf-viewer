@@ -1,0 +1,9 @@
+name: Dependabot PR
+
+on:
+  pull_request:
+
+jobs:
+  execute:
+    uses: join-com/shared-workflows/.github/workflows/dependabot-pr.yml@master
+    secrets: inherit
